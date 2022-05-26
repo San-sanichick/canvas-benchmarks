@@ -22,5 +22,10 @@ Todo:
 - [ ] WASM + WebGL (?????????????)
 
 ## On WASM
-There are no 2D-centric WebGL WASM libraries that I could find. 
-My initial plan was to use AssemblyScript, but, unless I want to buld my own renderer from scratch, that is not an option.
+There are several options that I have discovered:
+
+- Write a test using C++ & Cairo, compile that to WASM using Emscripten;
+- Use CanvasKit;
+- Suffer.
+
+So far using CanvasKit seems like the way to go.
