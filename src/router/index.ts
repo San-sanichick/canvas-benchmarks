@@ -21,7 +21,7 @@ const router = createRouter({
         },
         {
             path: '/webgl-wasm',
-            name: 'WebGL+TS',
+            name: 'WebGL+WASM',
             component: () => import('../views/WebGLWasmCanvas.vue')
         },
     ]
