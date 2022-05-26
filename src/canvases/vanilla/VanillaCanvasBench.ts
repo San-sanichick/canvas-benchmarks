@@ -10,25 +10,25 @@ import type BenchSettings from "../benchSettings";
 
 
 export default class VanillaBench {
-    private canvas: HTMLCanvasElement;
-    private ctx: CanvasRenderingContext2D;
+    private _canvas: HTMLCanvasElement;
+    private _ctx: CanvasRenderingContext2D;
 
-    private width: number;
-    private height: number;
+    private _width: number;
+    private _height: number;
 
-    private drawables: Array<VanillaDrawable>;
-    private settings: BenchSettings;
+    private _drawables: Array<VanillaDrawable>;
+    private _settings: BenchSettings;
 
     constructor(canvas: HTMLCanvasElement, settings: BenchSettings) {
-        this.canvas = canvas;
-        this.ctx    = this.canvas.getContext("2d", { alpha: false })!;
+        this._canvas = canvas;
+        this._ctx    = this._canvas.getContext("2d", { alpha: false })!;
 
-        this.width  = this.canvas.width;
-        this.height = this.canvas.height;
+        this._width  = this._canvas.width;
+        this._height = this._canvas.height;
 
-        this.drawables = [];
+        this._drawables = [];
 
-        this.settings = settings;
+        this._settings = settings;
     }
 
     public init() {
@@ -36,15 +36,15 @@ export default class VanillaBench {
             rectangles,
             circles,
             textLabels
-        } = this.settings;
+        } = this._settings;
 
-        this.drawables = [];
+        this._drawables = [];
 
         for (let i = 0; i < rectangles; i++) {
-            this.drawables.push(
+            this._drawables.push(
                 new Rect(
-                    randomInRange(this.width), 
-                    randomInRange(this.height),
+                    randomInRange(this._width), 
+                    randomInRange(this._height),
                     randomInRange(100, 50),
                     randomInRange(100, 50)
                 )
@@ -52,65 +52,65 @@ export default class VanillaBench {
         }
 
         for (let i = rectangles; i < rectangles + circles; i++) {
-            this.drawables.push(
+            this._drawables.push(
                 new Circle(
-                    randomInRange(this.width),
-                    randomInRange(this.height),
+                    randomInRange(this._width),
+                    randomInRange(this._height),
                     randomInRange(50, 20)
                 )
             );
         }
 
         for (let i = rectangles + circles; i < rectangles + circles + textLabels; i++) {
-            this.drawables.push(
+            this._drawables.push(
                 new TextLabel(
-                    randomInRange(this.width),
-                    randomInRange(this.height)
+                    randomInRange(this._width),
+                    randomInRange(this._height)
                 )
             );
         }
     }
 
     public update() {
-        for (let i = 0; i < this.drawables.length; i++) {
-            this.drawables[i].update(
-                this.drawables[i].pos.x + randomInRange(2, -2), 
-                this.drawables[i].pos.y + randomInRange(2, -2)
+        for (let i = 0; i < this._drawables.length; i++) {
+            this._drawables[i].update(
+                this._drawables[i].pos.x + randomInRange(2, -2), 
+                this._drawables[i].pos.y + randomInRange(2, -2)
             );
         }
     }
 
     public render() {
-        this.ctx.clearRect(0, 0, this.width, this.height);
+        this._ctx.clearRect(0, 0, this._width, this._height);
 
-        for (let i = 0; i < this.drawables.length; i++) {
-            this.drawables[i].render(this.ctx);
+        for (let i = 0; i < this._drawables.length; i++) {
+            this._drawables[i].render(this._ctx);
         }
     }
 
     public debugRender() {
-        this.ctx.beginPath();
-            this.ctx.rect(this.width - 90, 0, 100, 80);
-            this.ctx.fillStyle = "#ccc";
-            this.ctx.fill();
-        this.ctx.closePath();
+        this._ctx.beginPath();
+            this._ctx.rect(this._width - 90, 0, 100, 80);
+            this._ctx.fillStyle = "#ccc";
+            this._ctx.fill();
+        this._ctx.closePath();
 
-        this.ctx.font = '15px serif';
-        this.ctx.fillStyle = "black";
-        this.ctx.fillText(
-            `circle: ${this.settings.circles}`, 
-            this.width - 80, 
+        this._ctx.font = '15px serif';
+        this._ctx.fillStyle = "black";
+        this._ctx.fillText(
+            `circle: ${this._settings.circles}`, 
+            this._width - 80, 
             20
         );
 
-        this.ctx.fillText(
-            `rect: ${this.settings.rectangles}`, 
-            this.width - 80, 
+        this._ctx.fillText(
+            `rect: ${this._settings.rectangles}`, 
+            this._width - 80, 
             40
         );
-        this.ctx.fillText(
-            `text: ${this.settings.textLabels}`, 
-            this.width - 80, 
+        this._ctx.fillText(
+            `text: ${this._settings.textLabels}`, 
+            this._width - 80, 
             60
         );
     }
