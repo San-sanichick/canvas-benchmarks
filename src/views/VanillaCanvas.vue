@@ -14,11 +14,11 @@
         if (canvas.value) {
             const bench = new VanillaBench(canvas.value, {
                 // rectangles are the cheapest for canvas to draw
-                rectangles: 500,
+                rectangles: 2000,
                 // circles are slower
-                circles: 500,
+                circles: 2000,
                 // text is the most expensive draw call
-                textLabels: 500
+                textLabels: 2000
             });
 
             bench.init();
