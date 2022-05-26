@@ -1,9 +1,9 @@
-import type Drawable from "./Drawable";
+import type VanillaDrawable from "./VanillaDrawable";
 import Vector2D      from "@/utils/math/Vector2D";
 import randomColor   from "@/utils/randomColor";
 import randomInRange from "@/utils/randomInRange";
 
-export default class TextLabel implements Drawable {
+export default class TextLabel implements VanillaDrawable {
     public pos: Vector2D;
     private _fill: string;
     private _fontSize: number;

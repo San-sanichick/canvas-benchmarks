@@ -1,8 +1,8 @@
 import Vector2D      from "@/utils/math/Vector2D";
-import randomColor from "@/utils/randomColor";
-import type Drawable from "./Drawable";
+import randomColor   from "@/utils/randomColor";
+import type VanillaDrawable from "./VanillaDrawable";
 
-export default abstract class Shape implements Drawable {
+export default abstract class Shape implements VanillaDrawable {
     public pos: Vector2D;
     public fill: string;
     public stroke: string;

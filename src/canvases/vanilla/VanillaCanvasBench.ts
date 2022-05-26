@@ -1,15 +1,13 @@
-import type Drawable from "./Shapes/Drawable";
+import type VanillaDrawable from "./Shapes/VanillaDrawable";
+
 import Rect          from "./Shapes/Rect";
 import Circle        from "./Shapes/Circle";
+import TextLabel     from "./Shapes/TextLabel";
 
 import randomInRange from "@/utils/randomInRange";
-import TextLabel from "./Shapes/TextLabel";
+import type BenchSettings from "../benchSettings";
 
-interface BenchSettings {
-    rectangles: number;
-    circles: number;
-    textLabels: number;
-}
+
 
 export default class VanillaBench {
     private canvas: HTMLCanvasElement;
@@ -18,7 +16,7 @@ export default class VanillaBench {
     private width: number;
     private height: number;
 
-    private drawables: Array<Drawable>;
+    private drawables: Array<VanillaDrawable>;
     private settings: BenchSettings;
 
     constructor(canvas: HTMLCanvasElement, settings: BenchSettings) {
