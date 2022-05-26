@@ -1,5 +1,5 @@
-import type { Graphics } from "pixi.js";
-import WebGlShape from "./WebGlShape";
+import type { Graphics as PIXIGraphics } from "pixi.js";
+import WebGlShape                        from "./WebGlShape";
 
 export default class WebGlCircle extends WebGlShape {
     private _radius: number;
@@ -14,7 +14,7 @@ export default class WebGlCircle extends WebGlShape {
         if (radius) this._radius = radius;
     }
     
-    public render(): Graphics {
+    public render(): PIXIGraphics {
         
         this.graphicsObject.lineStyle(2, this.stroke);
         this.graphicsObject.beginFill(this.fill, 0.5);

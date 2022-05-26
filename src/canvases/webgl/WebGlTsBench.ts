@@ -1,5 +1,5 @@
-import * as PIXI    from "pixi.js";
-import { Viewport } from "pixi-viewport";
+import { Renderer as PIXIRenderer, Container as PIXIContainer } from "pixi.js";
+// import { PIXIViewport }            from "pixi-viewport";
 
 
 import type BenchSettings from "../benchSettings";
@@ -19,10 +19,12 @@ export default class WebGlBench {
     private _drawables: Array<WebGlDrawable>;
     private _settings: BenchSettings;
 
-    // private _app: PIXI.Application;
-    // private _viewport: Viewport;
-    private _renderer: PIXI.Renderer;
-    private _stage: PIXI.Container;
+    private _worldWidth: number;
+    private _worldHeight: number;
+
+    // private _viewport: PIXIViewport;
+    private _renderer: PIXIRenderer;
+    private _stage:    PIXIContainer;
 
     constructor(canvas: HTMLCanvasElement, settings: BenchSettings) {
         this._canvas = canvas;
@@ -30,10 +32,13 @@ export default class WebGlBench {
         this._width  = this._canvas.width;
         this._height = this._canvas.height;
 
+        this._worldWidth = 5000;
+        this._worldHeight = 5000;
+
         this._drawables = [];
         this._settings = settings;
 
-        this._renderer = new PIXI.Renderer(
+        this._renderer = new PIXIRenderer(
             {
                 width:  this._width,
                 height: this._height,
@@ -41,7 +46,7 @@ export default class WebGlBench {
             }
         );
 
-        this._stage = new PIXI.Container();
+        this._stage = new PIXIContainer();
 
         // this._app = new PIXI.Application({
         //     view: this._canvas
@@ -51,10 +56,10 @@ export default class WebGlBench {
         //     screenHeight: this._height,
         //     worldWidth:   this._worldWidth,
         //     worldHeight:  this._worldHeight,
-        //     interaction:  this._app.renderer.plugins.interaction
+        //     interaction:  this._renderer.plugins.interaction
         // });
 
-        // this._app.stage.addChild(this._viewport);
+        // this._stage.addChild(this._viewport);
 
         // this._viewport.drag().wheel();
     }
