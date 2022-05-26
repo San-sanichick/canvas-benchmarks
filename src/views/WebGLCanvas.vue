@@ -13,9 +13,12 @@
 
         if (canvas.value) {
             const bench = new WebGlBench(canvas.value, {
+                // Pixi.js seems to handle both rectangles and circles quite well
                 rectangles: 2000,
-                circles: 0,
-                textLabels: 0
+                circles:    2000,
+                // text is the bottleneck here, right now I'm not using BitmapText,
+                // which is supposed to be faster, but more complicated to setup
+                textLabels: 2000
             });
 
             bench.init();

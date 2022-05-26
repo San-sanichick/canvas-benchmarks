@@ -6,6 +6,8 @@ import type BenchSettings from "../benchSettings";
 import type WebGlDrawable from "./Shapes/WebGlDrawable";
 import WebGlRect from "./Shapes/WebGlRect";
 import randomInRange from "@/utils/randomInRange";
+import WebGlCircle from "./Shapes/WebGlCircle";
+import WebGlTextLabel from "./Shapes/WebGlTextLabel";
 
 
 export default class WebGlBench {
@@ -72,6 +74,25 @@ export default class WebGlBench {
                     randomInRange(this._height),
                     randomInRange(100, 50),
                     randomInRange(100, 50)
+                )
+            );
+        }
+
+        for (let i = rectangles; i < rectangles + circles; i++) {
+            this._drawables.push(
+                new WebGlCircle(
+                    randomInRange(this._width),
+                    randomInRange(this._height),
+                    randomInRange(5, 50)
+                )
+            );
+        }
+
+        for (let i = rectangles + circles; i < rectangles + circles + textLabels; i++) {
+            this._drawables.push(
+                new WebGlTextLabel(
+                    randomInRange(this._width),
+                    randomInRange(this._height)
                 )
             );
         }
