@@ -43,7 +43,7 @@
 
             canvas.value.addEventListener("mouseup", _ => {
                 updateFlag.value = false;
-            })
+            });
         }        
     });
 </script>
