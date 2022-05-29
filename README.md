@@ -24,8 +24,10 @@ Todo:
 ## On WASM
 There are several options that I have discovered:
 
-- Write a test using C++ & Cairo, compile that to WASM using Emscripten;
+- Write a test using C++ & SDL2, compile that to WASM using Emscripten;
 - Use CanvasKit;
 - Suffer.
 
-So far using CanvasKit seems like the way to go.
+CanvasKit is a weird thing. It's a pain to install (regular import is broken), and I'm either using it wrong, or it doesn't perform that well.
+
+The next step in the plan is to write a test in C++ using SDL2, compile that to WASM, and see how that works.
