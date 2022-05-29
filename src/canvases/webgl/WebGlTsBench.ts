@@ -83,7 +83,7 @@ export default class WebGlBench {
             );
         }
 
-        for (let i = rectangles; i < rectangles + circles; i++) {
+        for (let i = 0; i < circles; i++) {
             this._drawables.push(
                 new WebGlCircle(
                     randomInRange(this._width),
@@ -93,7 +93,7 @@ export default class WebGlBench {
             );
         }
 
-        for (let i = rectangles + circles; i < rectangles + circles + textLabels; i++) {
+        for (let i = 0; i < textLabels; i++) {
             this._drawables.push(
                 new WebGlTextLabel(
                     randomInRange(this._width),
