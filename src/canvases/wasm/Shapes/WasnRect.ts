@@ -18,6 +18,8 @@ export default class WasmRect extends WasmShape {
     }
     
     public render(kit: CanvasKit, canvas: Canvas): void {
+        this.paint.setColor(this.fill);
+        this.paint.setStyle(kit.PaintStyle.Fill);
         const rect = kit.RRectXY(
             kit.LTRBRect(
                 this.pos.x,
@@ -26,6 +28,11 @@ export default class WasmRect extends WasmShape {
                 this.pos.y + this._height
                 ),
             0, 0);
+
+        canvas.drawRRect(rect, this.paint);
+
+        this.paint.setColor(this.stroke);
+        this.paint.setStyle(kit.PaintStyle.Stroke);
 
         canvas.drawRRect(rect, this.paint);
     };

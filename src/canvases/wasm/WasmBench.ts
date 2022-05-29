@@ -5,6 +5,7 @@ import type WasmDrawable  from "./Shapes/WasmDrawable";
 
 import randomInRange      from "@/utils/randomInRange";
 import WasmRect from "./Shapes/WasnRect";
+import WasmCircle from "./Shapes/WasmCircle";
 
 
 export default class WasmBench {
@@ -44,6 +45,17 @@ export default class WasmBench {
                     randomInRange(this._width),
                     randomInRange(this._height),
                     randomInRange(100, 50),
+                    randomInRange(100, 50),
+                    this._kit
+                )
+            );
+        }
+
+        for (let i = 0; i < circles; i++) {
+            this._drawables.push(
+                new WasmCircle(
+                    randomInRange(this._width),
+                    randomInRange(this._height),
                     randomInRange(100, 50),
                     this._kit
                 )
