@@ -4,6 +4,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "lib": ["ESNEXT"],
+    "esModuleInterop": true,
     "paths": {
       "@/*": ["./src/*"]
     }
