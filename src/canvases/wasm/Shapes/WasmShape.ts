@@ -7,8 +7,8 @@ import type WasmDrawable from "./WasmDrawable";
 
 export default abstract class WasmShape implements WasmDrawable {
     public pos: Vector2D;
-    protected paint: Paint;
-    protected fill: Float32Array;
+    protected paint:  Paint;
+    protected fill:   Float32Array;
     protected stroke: Float32Array;
 
     constructor(x: number, y: number, kit: CanvasKit) {
@@ -18,7 +18,6 @@ export default abstract class WasmShape implements WasmDrawable {
         this.fill   = kit.parseColorString(randomColor());
         this.stroke = kit.parseColorString(randomColor());
 
-        
         this.paint.setAntiAlias(true);
     }
 
