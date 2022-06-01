@@ -33,8 +33,10 @@
             canvas.value.addEventListener("mousemove", _ => {
                 if (updateFlag.value) {
                     stats.begin();
-                        bench.update();
-                        bench.render();
+                        requestAnimationFrame(() => {
+                            bench.update();
+                            bench.render();
+                        });
                     stats.end();
                 }
             });
