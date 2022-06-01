@@ -9713,6 +9713,11 @@ var ASM_CONSTS = {
       return 0;
     }
 
+  function _emscripten_set_main_loop_arg(func, arg, fps, simulateInfiniteLoop) {
+      var browserIterationFunc = function() { getWasmTableEntry(func)(arg); };
+      setMainLoop(browserIterationFunc, fps, simulateInfiniteLoop, arg);
+    }
+
   function fillMouseEventData(eventStruct, e, target) {
       assert(eventStruct % 4 == 0);
       HEAPF64[((eventStruct)>>3)] = e.timeStamp;
@@ -10674,6 +10679,7 @@ var asmLibraryArg = {
   "emscripten_set_keydown_callback_on_thread": _emscripten_set_keydown_callback_on_thread,
   "emscripten_set_keypress_callback_on_thread": _emscripten_set_keypress_callback_on_thread,
   "emscripten_set_keyup_callback_on_thread": _emscripten_set_keyup_callback_on_thread,
+  "emscripten_set_main_loop_arg": _emscripten_set_main_loop_arg,
   "emscripten_set_mousedown_callback_on_thread": _emscripten_set_mousedown_callback_on_thread,
   "emscripten_set_mouseenter_callback_on_thread": _emscripten_set_mouseenter_callback_on_thread,
   "emscripten_set_mouseleave_callback_on_thread": _emscripten_set_mouseleave_callback_on_thread,
