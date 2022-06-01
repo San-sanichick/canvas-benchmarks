@@ -26,9 +26,10 @@
                 canvas: document.querySelector<HTMLCanvasElement>("#canvas")!
             });
             const res = await instance;
+            
             const Benchmark = res.Benchmark;
             const bench = new Benchmark({
-                rectangles: 2000,
+                rectangles: 8000,
                 circles:    0,
                 textLabels: 0
             });
@@ -36,25 +37,26 @@
             bench.init();
             bench.render();
 
-            canvas.value.addEventListener("mousedown", (e) => {
-                if (e.button === 0) {
-                    updateFlag.value = true;
-                }
-            });
+            bench.startLoop();
+
+            // canvas.value.addEventListener("mousedown", (e) => {
+            //     if (e.button === 0) {
+            //         updateFlag.value = true;
+            //     }
+            // });
 
 
-            canvas.value.addEventListener("mousemove", _ => {
-                if (updateFlag.value) {
-                    // stats.begin();
-                        // requestAnimationFrame(() => {bench.loop()});
-                    // stats.end();
-                    // bench.debugRender();
-                }
-            });
+            // canvas.value.addEventListener("mousemove", _ => {
+            //     if (updateFlag.value) {
+            //         stats.begin();
+            //             bench.loop();
+            //         stats.end();
+            //     }
+            // });
 
-            canvas.value.addEventListener("mouseup", _ => {
-                updateFlag.value = false;
-            });
+            // canvas.value.addEventListener("mouseup", _ => {
+            //     updateFlag.value = false;
+            // });
         }
     });
 </script>
