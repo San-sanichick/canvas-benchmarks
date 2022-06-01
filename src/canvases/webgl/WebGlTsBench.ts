@@ -32,7 +32,7 @@ export default class WebGlBench {
         this._width  = this._canvas.width;
         this._height = this._canvas.height;
 
-        this._worldWidth = 5000;
+        this._worldWidth  = 5000;
         this._worldHeight = 5000;
 
         this._drawables = [];
