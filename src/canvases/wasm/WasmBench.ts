@@ -3,10 +3,10 @@ import type { Canvas, CanvasKit }    from "canvaskit-wasm";
 import type BenchSettings from "../benchSettings";
 import type WasmDrawable  from "./Shapes/WasmDrawable";
 
-import randomInRange      from "@/utils/randomInRange";
-import WasmRect from "./Shapes/WasnRect";
+import WasmRect   from "./Shapes/WasmRect";
 import WasmCircle from "./Shapes/WasmCircle";
 
+import randomInRange from "@/utils/randomInRange";
 
 export default class WasmBench {
     private _canvas: HTMLCanvasElement;
