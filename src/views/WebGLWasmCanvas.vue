@@ -26,7 +26,7 @@
             const surface = kit.MakeCanvasSurface(canvas.value!);
 
             const bench = new WasmBench(canvas.value, kit, {
-                rectangles: 1000,
+                rectangles: 100,
                 circles:    0,
                 textLabels: 0
             });

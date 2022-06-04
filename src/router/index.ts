@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Index from '../views/Index.vue'
+import CustomWasmCanvas from '../views/CustomWasmCanvas.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'Home',
-            component: Index
+            name: "Index",
+            component: () => import('../views/Index.vue')
+        },
+        {
+            path: '/custom',
+            name: 'Custom',
+            component: CustomWasmCanvas
         },
         {
             path: '/vanilla',
@@ -24,6 +29,11 @@ const router = createRouter({
             name: 'WebGL+WASM',
             component: () => import('../views/WebGLWasmCanvas.vue')
         },
+        {
+            path: '/math',
+            name: "Math test",
+            component: () => import('../views/MathTest.vue')
+        }
     ]
 })
 
