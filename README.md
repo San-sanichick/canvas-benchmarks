@@ -4,7 +4,8 @@ This app aims to test the performance of three canvas configurations
 
 - TS + Canvas API
 - TS + WebGL (Pixi.js)
-- WASM + WebGL (????)
+- WASM + WebGL (CanvasKit)
+- Custom C++
 
 ## Results so far
 test data: 2k rectangles, 2k circle, 2k text objects
