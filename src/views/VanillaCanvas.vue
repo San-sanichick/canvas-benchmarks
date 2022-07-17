@@ -14,39 +14,48 @@
         if (canvas.value) {
             const bench = new VanillaBench(canvas.value, {
                 // rectangles are the cheapest for canvas to draw
-                rectangles: 2000,
+                rectangles: 1500,
                 // circles are slower
-                circles: 2000,
+                circles: 1500,
                 // text is the most expensive draw call
-                textLabels: 2000
+                textLabels: 1500
             });
 
             bench.init();
             bench.render();
 
-            canvas.value.addEventListener("mousedown", (e) => {
-                if (e.button === 0) {
-                    updateFlag.value = true;
-                }
-            });
+            const draw = () => {
+                stats.begin();
+                        bench.update();
+                        bench.render();
+                stats.end();
+                requestAnimationFrame(draw);
+            }
+
+            requestAnimationFrame(draw)
+        //     canvas.value.addEventListener("mousedown", (e) => {
+        //         if (e.button === 0) {
+        //             updateFlag.value = true;
+        //         }
+        //     });
 
 
-            canvas.value.addEventListener("mousemove", _ => {
-                if (updateFlag.value) {
-                    stats.begin();
-                        requestAnimationFrame(() => {
-                            bench.update();
-                            bench.render();
-                        });
-                    stats.end();
-                    // bench.debugRender();
-                }
-            });
+        //     canvas.value.addEventListener("mousemove", _ => {
+        //         if (updateFlag.value) {
+        //             stats.begin();
+        //                 requestAnimationFrame(() => {
+        //                     bench.update();
+        //                     bench.render();
+        //                 });
+        //             stats.end();
+        //             // bench.debugRender();
+        //         }
+        //     });
 
-            canvas.value.addEventListener("mouseup", _ => {
-                updateFlag.value = false;
-            });
-        }        
+        //     canvas.value.addEventListener("mouseup", _ => {
+        //         updateFlag.value = false;
+        //     });
+        }
     });
 </script>
 

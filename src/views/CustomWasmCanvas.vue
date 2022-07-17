@@ -29,15 +29,23 @@
             
             const Benchmark = res.Benchmark;
             const bench = new Benchmark({
-                rectangles: 8000,
-                circles:    0,
+                rectangles: 1500,
+                circles:    1500,
                 textLabels: 0
             });
     
             bench.init();
             bench.render();
 
-            bench.startLoop();
+            // bench.startLoop();
+            const draw = () => {
+                stats.begin();
+                    bench.loop();
+                stats.end();
+                requestAnimationFrame(draw);
+            }
+
+            requestAnimationFrame(draw);
 
             // canvas.value.addEventListener("mousedown", (e) => {
             //     if (e.button === 0) {

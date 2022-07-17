@@ -14,36 +14,47 @@
         if (canvas.value) {
             const bench = new WebGlBench(canvas.value, {
                 // Pixi.js seems to handle both rectangles and circles quite well
-                rectangles: 2000,
-                circles:    2000,
+                rectangles: 1500,
+                circles:    1500,
                 // text is the bottleneck here, right now I'm not using BitmapText,
                 // which is supposed to be faster, but more complicated to setup
-                textLabels: 200
+                textLabels: 1500
             });
 
             bench.init();
             bench.render();
 
-            canvas.value.addEventListener("mousedown", (e) => {
-                if (e.button === 0) {
-                    updateFlag.value = true;
-                }
-            });
+            const draw = () => {
+                stats.begin();
+                    bench.update();
+                    bench.render();
+                stats.end();
 
-            canvas.value.addEventListener("mousemove", _ => {
-                if (updateFlag.value) {
-                    stats.begin();
-                        requestAnimationFrame(() => {
-                            bench.update();
-                            bench.render();
-                        });
-                    stats.end();
-                }
-            });
+                requestAnimationFrame(draw);
+            }
 
-            canvas.value.addEventListener("mouseup", _ => {
-                updateFlag.value = false;
-            });
+            requestAnimationFrame(draw);
+
+            // canvas.value.addEventListener("mousedown", (e) => {
+            //     if (e.button === 0) {
+            //         updateFlag.value = true;
+            //     }
+            // });
+
+            // canvas.value.addEventListener("mousemove", _ => {
+            //     if (updateFlag.value) {
+            //         stats.begin();
+            //             requestAnimationFrame(() => {
+            //                 bench.update();
+            //                 bench.render();
+            //             });
+            //         stats.end();
+            //     }
+            // });
+
+            // canvas.value.addEventListener("mouseup", _ => {
+            //     updateFlag.value = false;
+            // });
         }
     })
 </script>

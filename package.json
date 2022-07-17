@@ -9,7 +9,8 @@
   },
   "dependencies": {
     "@drecom/stats.js": "^1.0.0",
-    "canvaskit-wasm": "^0.34.0",
+    "axios": "^0.27.2",
+    "canvaskit-wasm": "^0.35.0",
     "eigen": "^0.2.1",
     "pixi-cull": "^2.2.0",
     "pixi-viewport": "^4.34.4",

@@ -1,4 +1,5 @@
 import type { Canvas, CanvasKit }    from "canvaskit-wasm";
+import axios from "axios";
 
 import type BenchSettings from "../benchSettings";
 import type WasmDrawable  from "./Shapes/WasmDrawable";
@@ -7,6 +8,7 @@ import WasmRect   from "./Shapes/WasmRect";
 import WasmCircle from "./Shapes/WasmCircle";
 
 import randomInRange from "@/utils/randomInRange";
+import WasmText from "./Shapes/WasmText";
 
 export default class WasmBench {
     private _canvas: HTMLCanvasElement;
@@ -32,7 +34,7 @@ export default class WasmBench {
         this._settings = settings;
     }
 
-    public init() {
+    public async init() {
         const {
             rectangles,
             circles,
@@ -60,6 +62,48 @@ export default class WasmBench {
                     this._kit
                 )
             );
+        }
+
+        const fontMgr = await this.loadFonts();
+        for (let i = 0; i < textLabels; i++) {
+            this._drawables.push(
+                new WasmText(
+                    randomInRange(this._width),
+                    randomInRange(this._height),
+                    this._kit,
+                    fontMgr!
+                )
+            );
+        }
+
+    }
+
+    private async loadFonts() {
+        const fontUrls = [
+            "https://storage.googleapis.com/skia-cdn/google-web-fonts/Roboto-Regular.ttf",
+        ];
+
+        const promises = [];
+
+        for (let i = 0; i < fontUrls.length; i++) {
+            promises.push(
+                axios.get(fontUrls[i], {
+                    responseType: "arraybuffer"
+                })
+            );
+        }
+
+        try {
+            const res = await Promise.all(promises);
+
+            const fontData = [];
+            for (let i = 0; i < res.length; i++) {
+                fontData.push(res[i].data);
+            }
+            
+            return this._kit.FontMgr.FromData(fontData as any);
+        } catch (error) {
+            console.error(error);
         }
     }
 
