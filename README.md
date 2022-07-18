@@ -8,17 +8,19 @@ This app aims to test the performance of three canvas configurations
 - Custom C++
 
 ## Results so far
-test data: 2k rectangles, 2k circle, 2k text objects
+test data: 1,5k rectangles, 1,5k circle, 1,5k text objects
 
-|Approach|Frametime|FPS|Memory usage|
-|--------|---------|---|------------|
-|vanilla |    ~25ms|  4|         7MB|
-|Pixi.js |    ~16ms| 60|       ~80MB|
+|Approach |FPS|Memory usage|
+|---------|---|------------|
+|vanilla  |  9|      ~145MB|
+|Pixi.js  | 76|      ~200MB|
+|SDL2     | 63|      ~165MB|
+|CanvasKit| 45|      ~300MB|
 
 Pixi.js is in the lead here, although the test done are not particularly thorough
 
 Todo:
 - [x] TS + Canvas API
 - [x] TS + WebGL (Pixi.js)
-- [x] CanvasKit
 - [x] Custom C++ class compiled to WASM
+- [x] CanvasKit
