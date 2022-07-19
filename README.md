@@ -17,7 +17,7 @@ test data: 1,5k rectangles, 1,5k circle, 1,5k text objects
 |SDL2     | 63|      ~165MB|
 |CanvasKit| 45|      ~300MB|
 
-Pixi.js is in the lead here, although the test done are not particularly thorough
+Pixi.js is in the lead here, although the tests done are not particularly thorough
 
 Todo:
 - [x] TS + Canvas API
